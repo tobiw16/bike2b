@@ -1,0 +1,59 @@
+.blue-button {
+    background: transparent;
+    border-radius: 50px;
+    border: 1px solid #00BCD4;
+    color: white;
+    background-color: #00BCD4;
+    font-size: inherit;
+    font-weight: normal;
+    padding: 15px 30px;
+    cursor: pointer;
+    margin-right: 100px;
+    text-decoration: none;
+  }
+  
+  .blue-button:hover {
+    text-decoration: underline;
+  }
+
+  .hintergrund {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .info{
+    margin-top: 10px;
+    margin-right: 10px;
+    background-color: white;
+    height: 40px;
+    width: 40px;
+    float: right;
+    padding-top: 22px;
+    }
+  
+    .icon{
+    color: #00BCD4;
+    height: 40px;
+    width: 40px;
+    vertical-align: middle;
+    }
+
+    .absatz{
+      margin-left: 100px;
+    }
+
+    .überschrift {
+      font-size: x-large;
+      margin-left: 60px;
+      margin-top: 30px;
+    }
+
+    .spacer {
+      flex: 1;
+    }
+
+    .flex {
+      width: 100%;
+      display: flex;
+    }

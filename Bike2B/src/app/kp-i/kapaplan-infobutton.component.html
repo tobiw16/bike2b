@@ -1,0 +1,177 @@
+<h1 mat-dialog-title><b>Verwendete Formeln</b></h1>
+<mat-dialog-content class="mat-typography">
+    <h3><u>Kapazitätsbedarf</u></h3>
+    <p>
+      <b>Kapazitätsbedarf</b> = Kapazitätsbedarf Produktion + Rüstzeit + Kapazitätsbedarf Vorperiode + Rüstzeit Vorperiode + (Zusatzminuten pro Tag * 5) 
+    </p>
+    <u>Kapazitätsbedarf Produktion</u><br>
+      <table style="width:100%">
+        <tr>
+          <th style="width:20%">Arbeitsplatz</th>
+          <th>Berechnung</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>(E49+E54+E29) * 6</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>(E50+E55+E30) * 5</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>E51 * 5 + (E56+31) * 6</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>E1 * 6 + (E2+E3) * 7</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>E16 * 2 + (E18+E19+E20) * 3</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>(E10+E11+E12+E13+E14+E15+E18+E19+E20+E26) *2</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>(E10+E13) + (E11+E12+E14+E15) * 2 + (E18+E19+E20) * 3</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>(E18+E19+E20) * 2 + (E10+E11+E12+E13+E14+E15) * 3</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>(E4+E5+E6+E7+E8+E9) * 4</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>(E4+E5+E6+E7+E8+E9) * 3</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>(E10+E11+E12+E13+E14+E15) * 3</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td>(E10+E11+E12+E13+E14+E15) * 2</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td>E16 * 3</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td>(E17+E26) * 3</td>
+        </tr>
+      </table><br>
+    <u>Rüstzeit</u><br>
+      <b>Rüstzeit</b> = (Durchschnittliche Rüstdauer / Arbeitsplatz) * Anzahl Rüstevents der Vorperiode <br>
+      <table style="width:50%">
+        <tr>
+          <th style="width:40%">Arbeitsplatz</th>
+          <th>durchschnittliche Rüstzeit</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>20</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>27</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>20</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>27</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>15</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>21</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>18</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>16</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>20</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>17</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td>15</td>
+        </tr>
+      </table>
+      <small>
+        <img class="info1" src="../../../assets/pictures/Info.png" alt="">
+        Die Simulation soll sich an der Vorperiode orientieren. Deshalt wird die Anzahl der Rüstevents der Vorperiode ausgelesen, da diese von Periode zu Periode
+        schwankt und mit der hinterlegten durchschnittlichen Rüstdauer multipliziert.
+      </small><br><br>
+    <u>Kapazitätsbedarf Vorperiode</u><br>
+    <p>
+      <small>
+        <img class="info1" src="../../../assets/pictures/Info.png" alt="">
+        Der Kapazitätsbedarf um die Produktion der Warteschlange zu berechnen, wird pro Arbeitsplatz ausgelesen und auf den gesamten Kapazitätsbedarf aufsummiert.
+      </small><br>
+    </p>
+    <u>Rüstzeit Vorperiode</u><br>
+    <p>
+      <b>Rüstzeit Vorperiode</b> = Anzahl Aufträge in Warteschlange * Durchschnittliche Rüstdauer<br>
+      <small>
+        <img class="info1" src="../../../assets/pictures/Info.png" alt="">
+        Dies ist eine Annäherungsformel, die den Zeitbedarf schätzt, der aus den Aufträgen der Vorperiode abzuarbeiten ist.
+      </small>
+    </p>
+    <h3><u>Schichten</u></h3>
+          <textarea class="code" rows="18" cols="85">
+            let anzhalSchichten: number = item.kapa_gesamt / 2400;
+            if (anzhalSchichten >= 1.5 && anzhalSchichten <= 2.5) {
+              item.anzahl_schichten = 2;
+            } else if (anzhalSchichten >=2.5){
+              item.anzahl_schichten = 3;
+            } else {
+              item.anzahl_schichten = 1;
+            }
+            if(item.anzahl_schichten == 1 && item.kapa_gesamt >= 2400){
+              item.ueberstunden_min_tag = Math.ceil((item.kapa_gesamt - 2400)/5);
+            } else if (item.anzahl_schichten == 2 && item.kapa_gesamt >= 4800){
+              item.ueberstunden_min_tag = Math.ceil((item.kapa_gesamt - 4800)/5);
+            } else {
+              item.ueberstunden_min_tag = 0;
+            }
+          }</textarea><br>
+      <small>
+      <img class="info1" src="../../../assets/pictures/Info.png" alt="">
+      Die Formel bezieht sich auf die Vorgabe, dass pro Schicht nicht mehr als 50% Überstunden gefahren werden dürfen. Die maximal möglichen Minuten pro Schicht liegen
+      bei 2400 Minuten und somit liegt die Grenze für die nächste benötigte Schicht bei 3600, respektive 6000 Minuten.
+    </small><br>
+</mat-dialog-content>
